@@ -35,7 +35,7 @@ class CreateTicketsTable extends Migration
             $table->integer('sub_category_id')->nullable()->index();
             $table->integer('assigned_to')->nullable()->index();
             $table->integer('type_id')->nullable()->index();
-            $table->text('details');
+            $table->text('details')->nullable();
             $table->integer('review_id')->nullable();
             $table->timestamps();
         });

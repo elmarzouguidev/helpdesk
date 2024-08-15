@@ -12,13 +12,10 @@ A ticket customer support online!
 
 ### NGinx installation
 
-- Copy HelpDesk to your server
+- Copy NSAAPP to your server
 - Set document root as per your directory location where you did put that HelpDesk files.
 
 
-### Full Documentation:
-Open the Documentation folder and click on the "index.html" to open full documentation instructions in your browser. On the following website.
-https://helpdesk-doc.w3bd.com
 
 #### Clear All Cache
 ```

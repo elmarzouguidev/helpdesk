@@ -15,14 +15,14 @@ class SettingSeeder extends Seeder
     public function run()
     {
         DB::table('settings')->truncate();
-        DB::table('settings')->insert(['name' => 'App Name', 'slug' => 'app_name', 'type' => 'text', 'value' => 'Help Desk']);
+        DB::table('settings')->insert(['name' => 'App Name', 'slug' => 'app_name', 'type' => 'text', 'value' => 'NSA application']);
         DB::table('settings')->insert(['name' => 'Email Recipient for customer ticket', 'slug' => 'default_recipient', 'type' => 'text', 'value' => 1]);
         DB::table('settings')->insert(['name' => 'Default Language', 'slug' => 'default_language', 'type' => 'text', 'value' => 'en']);
         DB::table('settings')->insert(['name' => 'Main_logo', 'slug' => 'main_logo', 'type' => 'text', 'value' => '/images/logo.png']);
         DB::table('settings')->insert(['name' => 'Main_favicon', 'slug' => 'main_favicon', 'type' => 'text', 'value' => '/favicon.png']);
         DB::table('settings')->insert(['name' => 'Hide_ticket_fields', 'slug' => 'hide_ticket_fields', 'type' => 'json', 'value' => \json_encode([])]);
         DB::table('settings')->insert(['name' => 'Required ticket fields', 'slug' => 'required_ticket_fields', 'type' => 'json', 'value' => \json_encode([])]);
-        DB::table('settings')->insert(['name' => 'Footer Text', 'slug' => 'footer_text', 'type' => 'text', 'value' => 'Help Desk © 2022 - Powered by W3BD']);
+        DB::table('settings')->insert(['name' => 'Footer Text', 'slug' => 'footer_text', 'type' => 'text', 'value' => 'NSA application © 2024 - Powered by NSA Team']);
         DB::table('settings')->insert(['name' => 'Enable Options', 'slug' => 'enable_options', 'type' => 'json',
             'value' => json_encode([
                 ['name' => 'Chat', 'slug' => 'chat', 'value' => true],
