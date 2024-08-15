@@ -92,7 +92,7 @@ Route::post('/ticket/open', [HomeController::class, 'ticketPublicStore'])
 Route::get('/', [HomeController::class, 'index'])
 ->name('home');
 
-Route::redirect('/', '/login');
+//Route::redirect('/', '/login');
 
 // Dashboard
 Route::prefix('dashboard')->group(function () {

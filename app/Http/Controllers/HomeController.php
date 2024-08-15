@@ -26,8 +26,11 @@ use Inertia\Inertia;
 class HomeController extends Controller
 {
 
-    public function index(){
-        $hide_ticket_fields = [];
+    public function index()
+    {
+
+        return redirect()->route('dashboard');
+        /*$hide_ticket_fields = [];
         $get_hide_ticket_fields = Setting::where('slug', 'hide_ticket_fields')->first();
         if(!empty($get_hide_ticket_fields)){
             $hide_ticket_fields = json_decode($get_hide_ticket_fields->value, true);
@@ -49,21 +52,22 @@ class HomeController extends Controller
                 ->get()
                 ->map
                 ->only('id', 'name'),
-        ]);
+        ]);*/
     }
 
-    public function ticketOpen(){
-//        $home = FrontPage::where('slug', 'home')->first();
-//        if(!empty($home) && !empty($home->html)){
-//            $home = json_decode($home->html, true);
-//            if(isset($home['sections']) && isset($home['sections'][2]) && isset($home['sections'][2]['login_require_create_ticket']) && $home['sections'][2]['login_require_create_ticket'] && !Auth::check()){
-//                return Redirect::route('login');
-//            }
-//        }
+    public function ticketOpen()
+    {
+        //        $home = FrontPage::where('slug', 'home')->first();
+        //        if(!empty($home) && !empty($home->html)){
+        //            $home = json_decode($home->html, true);
+        //            if(isset($home['sections']) && isset($home['sections'][2]) && isset($home['sections'][2]['login_require_create_ticket']) && $home['sections'][2]['login_require_create_ticket'] && !Auth::check()){
+        //                return Redirect::route('login');
+        //            }
+        //        }
         $hide_ticket_fields = [];
 
         $get_hide_ticket_fields = Setting::where('slug', 'hide_ticket_fields')->first();
-        if(!empty($get_hide_ticket_fields)){
+        if (!empty($get_hide_ticket_fields)) {
             $hide_ticket_fields = json_decode($get_hide_ticket_fields->value, true);
         }
         return Inertia::render('Landing/OpenTicket', [
@@ -84,20 +88,21 @@ class HomeController extends Controller
         ]);
     }
 
-    public function ticketPublicStore() {
+    public function ticketPublicStore()
+    {
         $required_fields = [];
         $hide_ticket_fields = [];
 
         $get_required_fields = Setting::where('slug', 'required_ticket_fields')->first();
         $get_hide_ticket_fields = Setting::where('slug', 'hide_ticket_fields')->first();
-        if(!empty($get_required_fields)){
+        if (!empty($get_required_fields)) {
             $required_fields = json_decode($get_required_fields->value, true);
         }
-        if(!empty($get_hide_ticket_fields)){
+        if (!empty($get_hide_ticket_fields)) {
             $hide_ticket_fields = json_decode($get_hide_ticket_fields->value, true);
         }
 
-        $is_required = array_filter($required_fields, function ($rf) use ($hide_ticket_fields){
+        $is_required = array_filter($required_fields, function ($rf) use ($hide_ticket_fields) {
             return !in_array($rf, $hide_ticket_fields);
         });
 
@@ -105,10 +110,10 @@ class HomeController extends Controller
             'first_name' => ['required', 'max:40'],
             'last_name' => ['required', 'max:40'],
             'subject' => ['required'],
-            'department_id' => [in_array('department', $is_required)?'required':'nullable', Rule::exists('departments', 'id')],
-            'category_id' => [in_array('category', $is_required)?'required':'nullable', Rule::exists('categories', 'id')],
-            'sub_category_id' => [in_array('sub_category', $is_required)?'required':'nullable', Rule::exists('categories', 'id')],
-            'type_id' => [in_array('ticket_type', $is_required)?'required':'nullable', Rule::exists('types', 'id')],
+            'department_id' => [in_array('department', $is_required) ? 'required' : 'nullable', Rule::exists('departments', 'id')],
+            'category_id' => [in_array('category', $is_required) ? 'required' : 'nullable', Rule::exists('categories', 'id')],
+            'sub_category_id' => [in_array('sub_category', $is_required) ? 'required' : 'nullable', Rule::exists('categories', 'id')],
+            'type_id' => [in_array('ticket_type', $is_required) ? 'required' : 'nullable', Rule::exists('types', 'id')],
             'email' => ['required', 'max:60', 'email'],
             'details' => ['required'],
             'custom_field' => ['nullable'],
@@ -116,7 +121,7 @@ class HomeController extends Controller
 
         $user = User::where('email', $ticket_data['email'])->first();
 
-        if(empty($user)){
+        if (empty($user)) {
             $plain_password = $this->genRendomPassword();
             $customerRole = Role::where('slug', 'customer')->first();
             $user = User::create([
@@ -139,7 +144,7 @@ class HomeController extends Controller
             'user_id' => $user->id
         ];
 
-        if($status){
+        if ($status) {
             $ticketObject['status_id'] = $status->id;
         }
 
@@ -147,18 +152,18 @@ class HomeController extends Controller
         $ticket->uid = app('App\HelpDesk')->getUniqueUid($ticket->id);
         $ticket->save();
 
-        if(!empty($ticket_data['custom_field'])){
-            foreach ($ticket_data['custom_field'] as $cfk => $cfv){
+        if (!empty($ticket_data['custom_field'])) {
+            foreach ($ticket_data['custom_field'] as $cfk => $cfv) {
                 $ticket_field = TicketField::where('name', $cfk)->first();
-                if(!empty($ticket_field)){
+                if (!empty($ticket_field)) {
                     TicketEntry::create(['ticket_id' => $ticket->id, 'field_id' => $ticket_field->id, 'name' => $cfk, 'label' => $ticket_field->label, 'value' => $cfv]);
                 }
             }
         }
 
-        if(Request::hasFile('files')){
+        if (Request::hasFile('files')) {
             $files = Request::file('files');
-            foreach($files as $file){
+            foreach ($files as $file) {
                 $file_path = $file->store('tickets', ['disk' => 'file_uploads']);
                 Attachment::create(['ticket_id' => $ticket->id, 'name' => $file->getClientOriginalName(), 'size' => $file->getSize(), 'path' => $file_path]);
             }
@@ -167,7 +172,7 @@ class HomeController extends Controller
         $variables = [
             'name' => $user->first_name,
             'email' => $user->email,
-            'password' => $plain_password??null,
+            'password' => $plain_password ?? null,
             'login_url' => URL::to('login'),
             'sender_name' => config('mail.from.name', 'support@nsa.ma'),
             'ticket_id' => $ticket->id,
@@ -179,7 +184,8 @@ class HomeController extends Controller
         return Redirect::route('ticket_open')->with('success', 'The ticket has been submitted, we will get a message from us to follow up the ticket update. Please check the spam folder and make sure you got the mail from us.');
     }
 
-    private function genRendomPassword() {
+    private function genRendomPassword()
+    {
         $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
         $pass = array(); //remember to declare $pass as an array
         $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
