@@ -58,7 +58,7 @@ class SendTicketUpdatedNotification
                     'subject' => $ticket->subject,
                     'type' => $ticket->ticketType ? $ticket->ticketType->name : '',
                 ];
-                $this->prepareMessage($template, $variables, $ticket, $ticket->user->email);
+                $this->prepareMessage($template, $variables, $ticket, $ticket->user?->email ?? 'noreplay@nsa.ma');
                 if (!empty($ticket->assignedTo)) {
                     $variables['name'] = $ticket->assignedTo->first_name;
                     $variables['email'] = $ticket->assignedTo->email;
