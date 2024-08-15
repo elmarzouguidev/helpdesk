@@ -33,7 +33,7 @@ class HomeController extends Controller
             $hide_ticket_fields = json_decode($get_hide_ticket_fields->value, true);
         }
         return Inertia::render('Landing/Home', [
-            'title' => 'Home - Helpdesk',
+            'title' => 'Home - NSA',
             'page' => FrontPage::where('slug', 'home')->first(),
 //            'footer' => FrontPage::where('slug', 'footer')->first(),
             'custom_fields' => TicketField::get(),
@@ -68,7 +68,7 @@ class HomeController extends Controller
         }
         return Inertia::render('Landing/OpenTicket', [
             'footer' => FrontPage::where('slug', 'footer')->first(),
-            'title' => 'Open Ticket - Helpdesk',
+            'title' => 'Open Ticket - NSA',
             'custom_fields' => TicketField::get(),
             'hide_ticket_fields' => $hide_ticket_fields,
             'departments' => Department::orderBy('name')
@@ -169,7 +169,7 @@ class HomeController extends Controller
             'email' => $user->email,
             'password' => $plain_password??null,
             'login_url' => URL::to('login'),
-            'sender_name' => config('mail.from.name', 'support@web.com'),
+            'sender_name' => config('mail.from.name', 'support@nsa.ma'),
             'ticket_id' => $ticket->id,
             'uid' => $ticket->uid,
             'subject' => $ticket->subject,
