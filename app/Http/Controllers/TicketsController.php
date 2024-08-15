@@ -437,7 +437,7 @@ class TicketsController extends Controller
                 'user_id' => $user['id']
             ]);
             $ticket->update(['review_id' => $review->id]);
-            return Redirect::route('tickets.edit', $ticket->uid)->with('success', 'Added the review!');
+            return Redirect::route('tickets.edit')->with('success', 'Added the review!');
         }
 
         $closed_status = Status::where('slug', 'like', '%close%')->first();
@@ -501,7 +501,7 @@ class TicketsController extends Controller
             }
         }
 
-        return Redirect::route('tickets.edit', $ticket->uid)->with('success', 'Ticket updated.');
+        return Redirect::route('tickets')->with('success', 'Ticket updated.');
     }
 
     public function newComment()
