@@ -87,6 +87,13 @@ Route::get('/ticket/open', [HomeController::class, 'ticketOpen'])
 Route::post('/ticket/open', [HomeController::class, 'ticketPublicStore'])
     ->name('ticket_store');
 
+
+    /** Site Front-Landing */
+Route::get('/', [HomeController::class, 'index'])
+->name('home');
+
+Route::redirect('/', '/login');
+
 // Dashboard
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])
@@ -730,11 +737,7 @@ Route::post('chat/sendMessage', [ChatController::class, 'sendPublicMessage'])
 Route::get('/language/{language}', [DashboardController::class, 'setLocale'])
     ->name('language');
 
-/** Site Front-Landing */
-Route::get('/', [HomeController::class, 'index'])
-    ->name('home');
 
-Route::redirect('/', '/login');
 
 Route::get('terms-of-services', [PageController::class, 'terms'])
     ->name('terms_service');
