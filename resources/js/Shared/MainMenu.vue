@@ -171,9 +171,9 @@ export default {
             )
         }
 
-        if(this.user.role.slug === 'admin'){
+        /*if(this.user.role.slug === 'admin'){
             this.menu_items.push({'name': 'System Update', 'route': 'settings.update', 'url': 'settings/update', 'icon': 'archive'})
-        }
+        }*/
     }
 }
 </script>
