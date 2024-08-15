@@ -20,7 +20,7 @@
           <th class="pb-4 pt-6 px-6">{{ __('Email') }}</th>
           <th class="pb-4 pt-6 px-6">{{ __('Phone') }}</th>
             <th class="pb-4 pt-6 px-6">{{ __('Country') }}</th>
-            <th class="pb-4 pt-6 px-6">{{ __('City') }}</th>
+            <th class="pb-4 pt-6 px-6">{{ __('Full name assigned manager') }}</th>
             <th class="pb-4 pt-6 px-6" colspan="2">{{ __('Role') }}</th>
         </tr>
         <tr v-for="user in users.data" :key="user.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
