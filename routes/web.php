@@ -38,6 +38,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\FrontPagesController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DevController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
@@ -266,7 +267,7 @@ Route::prefix('dashboard')->group(function () {
         ->name('priorities.destroy')
         ->middleware('auth');
 
-// End - Priorities
+    // End - Priorities
 
     /** Faq Route */
     Route::get('faqs', [FaqsController::class, 'index'])
@@ -321,7 +322,7 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('posts/{post}', [BlogController::class, 'destroy'])
         ->name('posts.destroy')
         ->middleware('auth');
-// End - Blog
+    // End - Blog
 
     /** Knowledge base */
     Route::get('knowledge_base', [KnowledgeBaseController::class, 'index'])
@@ -378,7 +379,7 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('settings/statuses/{status}', [StatusesController::class, 'destroy'])
         ->name('statuses.destroy')
         ->middleware('auth');
-// End - Statuses
+    // End - Statuses
 
 
 
@@ -422,7 +423,7 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('settings/departments/{department}', [DepartmentsController::class, 'destroy'])
         ->name('departments.destroy')
         ->middleware('auth');
-// End - Departments
+    // End - Departments
 
 
 
@@ -454,7 +455,7 @@ Route::prefix('dashboard')->group(function () {
     Route::delete('settings/types/{type}', [TypesController::class, 'destroy'])
         ->name('types.destroy')
         ->middleware('auth');
-// End - Types
+    // End - Types
 
 
     // Email Templates
@@ -469,7 +470,7 @@ Route::prefix('dashboard')->group(function () {
     Route::put('settings/templates/{emailTemplate}', [EmailTemplatesController::class, 'update'])
         ->name('templates.update')
         ->middleware('auth');
-// End - Email Template
+    // End - Email Template
 
     // Languages
     Route::get('settings/languages', [LanguagesController::class, 'index'])
@@ -511,7 +512,7 @@ Route::prefix('dashboard')->group(function () {
         ->name('users')
         ->middleware('auth');
 
-// Pending Users
+    // Pending Users
     Route::get('users/pending', [PendingUsersController::class, 'index'])
         ->name('pending_users')
         ->middleware('auth');
@@ -550,7 +551,7 @@ Route::prefix('dashboard')->group(function () {
         ->name('users.restore')
         ->middleware('auth');
 
-// Customers
+    // Customers
     Route::get('customers/{user}/edit', [CustomersController::class, 'edit'])
         ->name('customers.edit')
         ->middleware('auth');
@@ -580,7 +581,7 @@ Route::prefix('dashboard')->group(function () {
         ->middleware('auth');
 
 
-// Organizations
+    // Organizations
 
     Route::get('organizations', [OrganizationsController::class, 'index'])
         ->name('organizations')
@@ -648,7 +649,7 @@ Route::prefix('dashboard')->group(function () {
 
     Route::get('clear/{slug}', [BackupController::class, 'clearCache'])
         ->name('clear.cache');
-// End - Global Settings
+    // End - Global Settings
 
     /** Front Page Setup */
     Route::get('front_pages/{slug}', [FrontPagesController::class, 'page'])
@@ -683,7 +684,6 @@ Route::prefix('dashboard')->group(function () {
         ->name('roles.destroy')
         ->middleware('auth');
     /** end - User Roles */
-
 });
 
 Route::get('language/flag/{code}', [PageController::class, 'getFlag'])
@@ -840,3 +840,8 @@ Route::group(['prefix' => 'update', 'as' => 'LaravelUpdater::', 'middleware' => 
 });
 // New code for installer
 
+Route::group(['prefix' => 'dev', 'middleware' => 'web'], function () {
+
+    Route::get('/cache', [DevController::class, 'cacheAll']);
+    Route::get('/clear', [DevController::class, 'cleareAll']);
+});
