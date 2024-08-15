@@ -734,6 +734,8 @@ Route::get('/language/{language}', [DashboardController::class, 'setLocale'])
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
+Route::redirect('/', '/login');
+
 Route::get('terms-of-services', [PageController::class, 'terms'])
     ->name('terms_service');
 
