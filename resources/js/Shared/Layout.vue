@@ -5,7 +5,7 @@
       <div class="md:h-screen md:flex md:flex-col">
         <div class="md:flex md:shrink-0 ">
           <div class="md:shrink-0 md:py-2 md:w-60 flex items-center justify-between md:justify-center sidebar-left-top">
-              <Link class="mt-1" href="/">
+              <Link class="mt-1" href="/dashboard">
                   <logo class="help-desk-logo" />
               </Link>
               <dropdown class=" md:hidden" className="small-menu" placement="bottom-end">
