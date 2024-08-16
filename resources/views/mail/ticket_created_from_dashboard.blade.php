@@ -375,12 +375,12 @@
                     <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="content-block">
-                                <span class="apple-link">HelpDesk - A online ticket support system</span>
+                                <span class="apple-link">NSA Application - ticket support system</span>
                             </td>
                         </tr>
                         <tr>
                             <td class="content-block powered-by">
-                                © 2022 <a href="http://w3bd.com">W3BD</a> - All rights reserved.
+                                © 2024 <a href="http://nsa.ma">NSA</a> - All rights reserved.
                             </td>
                         </tr>
                     </table>
