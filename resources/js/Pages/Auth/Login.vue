@@ -40,19 +40,19 @@
                   <tr>
                       <td>Admin</td>
                       <td>john.due.helo@mail.com</td>
-                      <td>w3bd.com</td>
+                      <td>nsa.ma</td>
                       <td class="action" @click="autofillLogin($event, 'admin')">Copy</td>
                   </tr>
                   <tr>
                       <td>Manager</td>
                       <td>robert.slaughter@mail.com</td>
-                      <td>w3bd.com</td>
+                      <td>nsa.ma</td>
                       <td class="action" @click="autofillLogin($event, 'manager')">Copy</td>
                   </tr>
                   <tr>
                       <td>Customer</td>
                       <td>mmarks@example.com</td>
-                      <td>w3bd.com</td>
+                      <td>nsa.ma</td>
                       <td class="action" @click="autofillLogin($event, 'customer')">Copy</td>
                   </tr>
               </table>
@@ -123,7 +123,7 @@ export default {
           e.preventDefault()
           const roleEmails = { 'admin': 'john.due.helo@mail.com', 'manager': 'robert.slaughter@mail.com', 'customer' : 'mmarks@example.com'}
           this.form.email = roleEmails[role]
-          this.form.password = 'w3bd.com'
+          this.form.password = 'nsa.ma'
           if(login){
               this.login();
           }

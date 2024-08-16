@@ -76,34 +76,7 @@ class InstallController extends Controller {
         return view('installation.admin_setup');
     }
 
-    public function purchaseCodeVerify() {
-        $purchaseCode = Request::input('purchase_code');
-        if(!empty($purchaseCode) && preg_match("/^(\{)?[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}(?(1)\})$/i", $purchaseCode)){
-            $env = DotenvEditor::load();
-            $env->setKey('APP_PCE', $purchaseCode);
-            $env->save();
-            return redirect()->route('install.database_setup');
-        }else{
-            return redirect()->route('install.purchase_code')->with('error', 'Invalid purchase code, please input a valid purchase code.');
-        }
-    }
-
-    private function getPurchaseCode($product_code) {
-        $url = "https://api.envato.com/v3/market/author/sale?code=" . $product_code;
-        $curl = curl_init($url);
-        $header = array();
-        $pate = decrypt(config('app.pate'));
-        $header[] = 'Authorization: Bearer ' . $pate;
-        $header[] = 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:41.0) Gecko/20100101 Firefox/41.0';
-        $header[] = 'timeout: 20';
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-        $envatoRes = curl_exec($curl);
-        curl_close($curl);
-        $envatoRes = json_decode($envatoRes);
-        return $envatoRes;
-    }
-
+ 
     public function mailSetupStore(){
         if(Request::input('skip_mailer') != 'on'){
             $mailVariables = Request::validate([
@@ -258,7 +231,7 @@ class InstallController extends Controller {
     }
 
     private function import_sql() {
-        $sql_path = base_path('database/install_helpdesk.sql');
+        $sql_path = base_path('database/nsa.sql');
         DB::unprepared(file_get_contents($sql_path));
     }
 

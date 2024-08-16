@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => 'HelpDesk',
+    'name' => 'NSA-APP',
 
     'installed' => env('APP_INSTALLED', false),
 

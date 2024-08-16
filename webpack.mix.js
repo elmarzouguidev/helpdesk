@@ -47,6 +47,3 @@ mix
     .version()
     .sourceMaps()
 
-
-mix.sass('public/installer/css/scss/style.scss', 'public/installer/css')
-

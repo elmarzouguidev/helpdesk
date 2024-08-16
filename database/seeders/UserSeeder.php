@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->truncate();
         User::factory()->createMany([
-            ['email' => 'taylor@example.com', 'password' => 'w3bd.com', 'role_id' => 5]
+            ['email' => 'taylor@example.com', 'password' => 'nsa.ma', 'role_id' => 5]
         ]);
         User::factory(100)->create();
     }

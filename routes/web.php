@@ -779,23 +779,6 @@ Route::get('blog/{post}', [PageController::class, 'blogDetails'])
     ->name('blog.details');
 
 
-/** Newsletter Subscribe */
-Route::post('subscribe/news', [SubscriptionController::class, 'subscribe'])->name('subscribe.news');
-/** Newsletter Subscribe */
-
-/** Installation Steps */
-//Route::get('/install/init', [InstallController::class, 'init'])->name('install.init');
-//Route::get('/install/pre_installation', [InstallController::class, 'pre_installation'])->name('install.pre_installation');
-//Route::get('/install/purchase_code', [InstallController::class, 'purchase_code'])->name('install.purchase_code');
-//Route::post('/install/purchase_code/verify', [InstallController::class, 'purchaseCodeVerify'])->name('install.purchase_code.verify');
-//Route::get('/install/database_setup', [InstallController::class, 'database_setup'])->name('install.database_setup');
-//Route::get('/install/mail_setup', [InstallController::class, 'mail_setup'])->name('install.mail_setup');
-//Route::post('/install/mail_setup', [InstallController::class, 'mailSetupStore'])->name('install.mail_setup.save');
-//Route::get('/install/admin_setup', [InstallController::class, 'admin_setup'])->name('install.admin_setup');
-//Route::post('/install/database_installation', [InstallController::class, 'database_installation'])->name('install.db');
-//Route::post('/install/system_settings', [InstallController::class, 'adminSetupSave'])->name('install.admin_setup.save');
-//Route::get('/install/migrate', [InstallController::class, 'migrate'])->name('install.migrate');
-//Route::get('/backup/restore', [BackupController::class, 'restore'])->name('backup.restore');
 Route::get('/backup/mail/test', [BackupController::class, 'testMail'])->name('backup.restore');
 Route::get('/backup/uid/fix', [BackupController::class, 'fixUid'])->name('backup.fix.uid');
 
@@ -807,41 +790,8 @@ Route::get('/cron/imap/direct/run', [ImapController::class, 'run'])->name('cron.
 Route::get('/cron/piping', [CronJobsController::class, 'piping'])->name('cron.piping');
 Route::get('/cron/queue_work', [CronJobsController::class, 'queueWork'])->name('cron.queue_work');
 
-Route::get('/db/seed/{className}', [DatabaseController::class, 'seedByClassName'])->name('bd.seed.class')->middleware('auth');
+//Route::get('/db/seed/{className}', [DatabaseController::class, 'seedByClassName'])->name('bd.seed.class')->middleware('auth');
 
-
-// New code for installer
-Route::group(['prefix' => 'install', 'as' => 'LaravelInstaller::', 'middleware' => ['web', 'install']], function () {
-    Route::get('/', [InstallerController::class, 'welcome'])->name('welcome');
-    Route::get('environment', [EnvironmentController::class, 'environmentMenu'])->name('environment');
-    Route::get('environment/info', [EnvironmentController::class, 'environmentInfo'])->name('environmentInfo');
-    Route::get('environment/database', [EnvironmentController::class, 'environmentDatabase'])->name('environmentDatabase');
-    Route::get('environment/wizard', [EnvironmentController::class, 'environmentWizard'])->name('environmentWizard');
-    Route::post('environment/saveWizard', [EnvironmentController::class, 'saveWizard'])->name('environmentSaveWizard');
-    Route::post('environment/saveInfo', [EnvironmentController::class, 'saveInfo'])->name('environmentSaveInfo');
-    Route::post('environment/saveDatabase', [EnvironmentController::class, 'saveDatabase'])->name('environmentSaveDatabase');
-    Route::get('environment/classic', [EnvironmentController::class, 'environmentClassic'])->name('environmentClassic');
-    Route::post('environment/saveClassic', [EnvironmentController::class, 'saveClassic'])->name('environmentSaveClassic');
-    Route::get('requirements', [RequirementsController::class, 'requirements'])->name('requirements');
-    Route::get('permissions', [PermissionsController::class, 'permissions'])->name('permissions');
-    Route::get('database', [DatabaseController::class, 'database'])->name('database');
-    Route::get('final', [FinalController::class, 'finish'])->name('final');
-    Route::get('admin_setup', [FinalController::class, 'adminSetup'])->name('admin_setup');
-    Route::post('saveAdminSetup', [FinalController::class, 'saveAdminSetup'])->name('saveAdminSetup');
-});
-
-Route::group(['prefix' => 'update', 'as' => 'LaravelUpdater::', 'middleware' => 'web'], function () {
-    Route::group(['middleware' => 'update'], function () {
-        Route::get('/', [UpdateController::class, 'welcome'])->name('update.welcome');
-        Route::get('overview', [UpdateController::class, 'overview'])->name('overview');
-        Route::get('database', [UpdateController::class, 'database'])->name('database');
-    });
-
-    // This needs to be out of the middleware because right after the migration has been
-    // run, the middleware sends a 404.
-    Route::get('final', [UpdateController::class, 'finish'])->name('final');
-});
-// New code for installer
 
 Route::group(['prefix' => 'dev', 'middleware' => 'web'], function () {
 

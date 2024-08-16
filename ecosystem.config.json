@@ -1,7 +1,7 @@
 {
     "apps": [
         {
-            "name": "helpdesk",
+            "name": "NSA",
             "script": "artisan",
             "args": [
                 "serve",

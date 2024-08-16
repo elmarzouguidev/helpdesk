@@ -6,18 +6,9 @@ use App\Models\Setting;
 use App\Models\Ticket;
 
 class HelpDesk{
-    /**
-     * The HelpDesk version.
-     *
-     * @var string
-     */
+
     const VERSION = '1';
 
-    /**
-     * The envato item ID.
-     *
-     * @var string
-     */
     const ITEM_ID = '';
 
     public function getSettingsEmailNotifications(): array
