@@ -156,7 +156,7 @@ export default {
             this.menu_items.push({'name': 'Settings', 'route': '', 'url': 'settings', 'icon': 'settings', 'submenu': settingSubmenus })
         }
 
-        if(user_access.front_page.read || user_access.front_page.update || user_access.front_page.create || user_access.front_page.delete){
+        /*if(user_access.front_page.read || user_access.front_page.update || user_access.front_page.create || user_access.front_page.delete){
             this.menu_items.push(
                 {'name': 'Front Pages', 'route': '', 'url': 'front_pages', 'icon': 'gear',
                     'submenu': [
@@ -169,7 +169,7 @@ export default {
                     ]
                 },
             )
-        }
+        }*/
 
         /*if(this.user.role.slug === 'admin'){
             this.menu_items.push({'name': 'System Update', 'route': 'settings.update', 'url': 'settings/update', 'icon': 'archive'})

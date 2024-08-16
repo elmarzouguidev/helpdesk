@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="px-8 flex">
-                    <p class=" pt-1 mb-1" v-if="demo">{{ __('You can try to sending email with the `piping@atorali.com` email address to test on the demo mode.') }}</p>
+                    <p class=" pt-1 mb-1" v-if="demo">{{ __('You can try to sending email with the `support@nsa.ma` email address to test on the demo mode.') }}</p>
                 </div>
                 <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
                     <text-input type="text" v-model="form.IMAP_HOST" :error="form.errors.IMAP_HOST" class="pr-6 pb-8 w-full lg:w-1/3" :label="__('IMAP Host')" />
@@ -39,8 +39,8 @@
                         <code class="mt-5 mb-5 prose block whitespace-pre mt-1 text-sm">*/3 * * * * /usr/bin/php artisan command:piping_email</code>
 
                         <p class="mt-3 font-light">For the shared hosting like cPanel or any panel server you can call url as like this</p>
-                        <code class="mt-5 mb-5 prose block whitespace-pre mt-1 text-sm">*/3	* *	* *	wget -q -O - https://website.com/cron/piping >/dev/null 2>&1</code>
-                        <img src="/images/cron_job_example.png" alt="cron job example" />
+                        <code class="mt-5 mb-5 prose block whitespace-pre mt-1 text-sm">*/3	* *	* *	wget -q -O - https://app.nsa.ma/cron/piping >/dev/null 2>&1</code>
+                        
                     </div>
                 </div>
                 <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">

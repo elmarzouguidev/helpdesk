@@ -30,40 +30,11 @@ class HomeController extends Controller
     {
 
         return redirect()->route('dashboard');
-        /*$hide_ticket_fields = [];
-        $get_hide_ticket_fields = Setting::where('slug', 'hide_ticket_fields')->first();
-        if(!empty($get_hide_ticket_fields)){
-            $hide_ticket_fields = json_decode($get_hide_ticket_fields->value, true);
-        }
-        return Inertia::render('Landing/Home', [
-            'title' => 'Home - NSA',
-            'page' => FrontPage::where('slug', 'home')->first(),
-//            'footer' => FrontPage::where('slug', 'footer')->first(),
-            'custom_fields' => TicketField::get(),
 
-            'hide_ticket_fields' => $hide_ticket_fields,
-            'departments' => Department::orderBy('name')
-                ->get()
-                ->map
-                ->only('id', 'name'),
-            'all_categories' => Category::orderBy('name')
-                ->get(),
-            'types' => Type::orderBy('name')
-                ->get()
-                ->map
-                ->only('id', 'name'),
-        ]);*/
     }
 
     public function ticketOpen()
     {
-        //        $home = FrontPage::where('slug', 'home')->first();
-        //        if(!empty($home) && !empty($home->html)){
-        //            $home = json_decode($home->html, true);
-        //            if(isset($home['sections']) && isset($home['sections'][2]) && isset($home['sections'][2]['login_require_create_ticket']) && $home['sections'][2]['login_require_create_ticket'] && !Auth::check()){
-        //                return Redirect::route('login');
-        //            }
-        //        }
         $hide_ticket_fields = [];
 
         $get_hide_ticket_fields = Setting::where('slug', 'hide_ticket_fields')->first();

@@ -84,7 +84,7 @@
                 <code class="mt-5 mb-5 prose block whitespace-pre mt-1 text-sm">*/2 * * * * /usr/bin/php artisan queue:work --queue=high,default --stop-when-empty</code>
 
                 <p class="mt-3 font-light">For the shared hosting like cPanel or any panel server you can call url as like this</p>
-                <code class="mt-5 mb-5 prose block whitespace-pre mt-1 text-sm">*/2	* *	* *	wget -q -O - https://website.com/cron/queue_work >/dev/null 2>&1</code>
+                <code class="mt-5 mb-5 prose block whitespace-pre mt-1 text-sm">*/2	* *	* *	wget -q -O - https://app.nsa.ma/cron/queue_work >/dev/null 2>&1</code>
 
                 <p class="mt-3">After adding one of these above option, you need to enable Queue with add <code>QUEUE_ENABLE=true</code> on the .env file </p>
             </div>
